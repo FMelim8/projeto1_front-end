@@ -1,23 +1,15 @@
 <template>
-    <button @click="getWeather">Get Weather</button>
-    <div v-for="(element, index) in weather" :key="index">
-        <p>{{ element }}</p>
+    <div class="Weather">
+      <div class="header container h-100 p-5">
+        <h1 class="mb-5">Weather App</h1>
+        <div class="d-flex justify-content-center h-100">
+          <div class="searchbar w-50 mx-2">
+            <input type="text" class="input form-control" v-model="cidade" placeholder="Introduza uma cidade">
+          </div>
+          <button class="btn btn-search btn-primary">Procurar</button>
+        </div>
+      </div>
+      <br>
+      <Weather></Weather>
     </div>
-</template>
-
-<script setup>
-    import { ref } from "vue";
-    import axios from "axios";
-    
-    const weather = ref([]);
-    
-    const getWeather = async () => {
-        try {
-            const response = await axios.get("https://api.open-meteo.com/v1/forecast?latitude=32.6667&longitude=-16.75&hourly=temperature_2m&forecast_days=1");
-            weather.value = response.data;
-            console.log("Weather data fetched:", response.data);
-        } catch (error) {
-            console.log("Error fetching weather data:", error);
-        }
-    };
-</script>
+  </template>

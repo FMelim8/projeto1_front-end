@@ -1,18 +1,41 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="header container h-100 p-5">
+      <h1 class="mb-5">Weather App</h1>
+      <div class="d-flex justify-content-center h-100">
+        <div class="searchbar w-50 mx-2">
+          <input type="text" class="input form-control" v-model="cidade" placeholder="Introduza uma cidade">
+        </div>
+        <button class="btn btn-search btn-primary">Procurar</button>
+      </div>
+    </div>
+    <br>
+    <Weather></Weather>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+
+import Weather from "../components/Weather.vue"
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+    Weather
+  },
+  data(){
+    return{
+      cidade: "",
+      showWeather: false
+    }
+  },
+  methods:{
+    async searchWeathere () {
+      this.showWeather = false;
+      await this.$nextTick();
+      this.showWeather = true;
+
+    }
   }
 }
 </script>
