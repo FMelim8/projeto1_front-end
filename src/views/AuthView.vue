@@ -7,7 +7,7 @@
         <li :class="{'is-active': register}"><a @click.prevent="register=true">Register</a></li>
       </ul>
     </div>
-    <form action="" @submit.prevent="onSubmit">
+    <form action="" @submit.prevent="onSubmit" class="form-login">
       <div class="card auth-form">
         <div class="card-content">
           <div class="title has-text-centered">{{ formTitle }}</div>
@@ -42,10 +42,10 @@
 <script setup>
     import { computed, reactive, ref } from "vue"
     import { useAuthStore } from "../store/authStore"
-
-    const register = ref(false)
-
+    
     const authStore = useAuthStore();
+
+    const register = ref(false);
 
     const credentials = reactive({
         email: "",
@@ -63,8 +63,9 @@
         }
         if (register.value) {
           console.log("Register btn clicked", credentials)
+          authStore.registerUser(credentials)
         } else {
-          console.log("Login btn clicked", credentials)
+          authStore.loginUser(credentials)
         }
     }
 
@@ -81,5 +82,8 @@
   .auth-form{
     max-width: 400px;
     margin: 0 auto;
+  }
+  .form-login{
+    height: 70vh;
   }
 </style>
