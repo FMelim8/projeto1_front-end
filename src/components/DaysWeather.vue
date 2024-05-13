@@ -22,6 +22,21 @@
                 <div class="py-3">days</div>
                 <div class="py-3">12oc</div>
             </li>
+            <li class="li_active">
+                <div class="py-3">icons</div>
+                <div class="py-3">days</div>
+                <div class="py-3">12oc</div>
+            </li>
+            <li class="li_active">
+                <div class="py-3">icons</div>
+                <div class="py-3">days</div>
+                <div class="py-3">12oc</div>
+            </li>
+            <li class="li_active">
+                <div class="py-3">icons</div>
+                <div class="py-3">days</div>
+                <div class="py-3">12oc</div>
+            </li>
         </ul>
     </div>
   </template>

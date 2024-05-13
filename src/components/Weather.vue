@@ -13,24 +13,37 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card card-2 w-100">
-            <table class="m-4">
-                <tbody>
-                    <tr>
-                        <th>Sea Level</th>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <th>Sea Level</th>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <th>Sea Level</th>
-                        <td>100</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="card card-2 w-100">
+            <div class="container d-flex justify-content-center">
+                <table class="m-4">
+                    <tbody>
+                        <tr>
+                            <th>Temperature</th>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <th>Sea Level</th>
+                            <td>100</td>    
+                        </tr>
+                        <tr>
+                            <th>Sea Level</th>
+                            <td>100</td>
+                        </tr>
+                        <tr v-if="LoggedIn">
+                            <th>Wind Speed</th>
+                            <td>100</td>
+                        </tr>
+                        <tr v-if="LoggedIn">
+                            <th>Surface Pressure</th>
+                            <td>100</td>
+                        </tr>
+                        <tr v-if="LoggedIn">
+                            <th>UV Index</th>
+                            <td>100</td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </div>   
             <DaysWeather></DaysWeather>
             <div id="div_Form" class="d-flex m-3 justify-content-center">
                 <form action="">
@@ -38,18 +51,19 @@
                 </form>
             </div>
         </div>
+            
+        </div>
+        
     </div>    
 </template>
   
-<script>
-import DaysWeather from "./DaysWeather"
+<script setup>
+    import DaysWeather from "./DaysWeather"
 
-export default {
-    name: "myWeather",
-    components: {
-        DaysWeather
-    }
-}
+
+
+    const name = 'myWeather';
+    const components = { DaysWeather };
 
 </script>
 

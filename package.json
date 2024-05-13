@@ -10,6 +10,9 @@
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "bootstrap-vue": "^2.23.1",
+    "bulma": "^1.0.0",
+    "firebase": "^10.11.1",
+    "pinia": "^2.1.7",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
