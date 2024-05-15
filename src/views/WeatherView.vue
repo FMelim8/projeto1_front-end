@@ -21,7 +21,7 @@
               </div>
             </div>
             <div class="control">
-              <button type="submit" @click="chooseCountry" class="button is-primary">Choose</button>
+              <button type="submit" @click="chooseCountry"  class="button is-primary">Choose</button>
             </div>
           </div>
           <!-- <button class="btn btn-search btn-primary">Procurar</button> -->
@@ -30,6 +30,8 @@
     </div>
     <br>
     <Weather v-if="weatherData"></Weather>
+    
+
   </div>
   
 </template>
@@ -41,17 +43,21 @@
 
   const weatherData = ref();
   const country = ref("");
+  const cidade = ref("");
   
+
+
   const fetchWeatherData = async () => {
     try {
       const countrySelected = country.value;
       let url;
       switch (countrySelected) {
+        //mudar os outros urls
         case "Madeira":
-          url = 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability'
+          url = 'https://api.open-meteo.com/v1/forecast?latitude=32.6667&longitude=-16.75&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability&daily=temperature_2m_max,temperature_2m_min'
           break;
         case "Porto Santo":
-          url = 'https://api.open-meteo.com/v1/forecast?latitude=33.0705&longitude=-16.3451&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability'
+          url = 'https://api.open-meteo.com/v1/forecast?latitude=33.0705&longitude=-16.3451&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability&daily=temperature_2m_max,temperature_2m_min'
           break;
         case "Lisboa":
           url = 'https://api.open-meteo.com/v1/forecast?latitude=38.7167&longitude=-9.1333&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability'
@@ -80,18 +86,20 @@
     }
   };
 
-
-
   const chooseCountry = () => {
     console.log('Selected Country:', country.value);
     fetchWeatherData();
-    
+    updateCity();
   };
   console.log('Weather Data:', weatherData.value);
 
   // faz a cont weatherData poder ser usada nos componentes filho
-  provide('weatherData', weatherData);
+  provide("weatherData", weatherData);
+  provide("cidade", cidade)
 
+  const updateCity = () => {
+    cidade.value = country.value;
+  }
 </script>
 
 <style>

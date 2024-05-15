@@ -3,10 +3,10 @@
         <div class="d-flex">
             <div class="card main-div w-100">
                 <div class="p-3">
-                    <h2 class="mb-1 dia text-light">Segunda</h2>
-                    <p class="text-light date mb-0">data</p>
-                    <small class="text-light">Hora</small>
-                    <h2 class="place text-light">Lisboa <small>country</small> </h2>
+                    <h2 class="mb-1 dia text-light" v-if="weatherData">{{ dayOfWeek }}</h2>
+                    <p class="text-light date mb-0"> {{ weatherData.daily.time[0] }}</p>
+                    <small class="text-light">{{ currentTime }}</small>
+                    <h2 class="place text-light">{{ cidade }}</h2>
                     <div class="temp">
                         <h1 class="weather-temp text-light">21&deg;</h1>
                         <h2 class="text-light">descrição</h2>
@@ -18,12 +18,12 @@
                 <table class="m-4">
                     <tbody>
                         <tr>
-                            <th>Temperature</th>
-                            <td>100</td>
+                            <th>Max Temperature</th>
+                            <td>{{ weatherData.daily.temperature_2m_max[0] }} ºC</td>
                         </tr>
                         <tr>
-                            <th>Sea Level</th>
-                            <td>100</td>    
+                            <th>Min Temperature</th>
+                            <td>{{ weatherData.daily.temperature_2m_min[0] }} ºC</td>    
                         </tr>
                         <tr>
                             <th>Sea Level</th>
@@ -47,8 +47,33 @@
   
 <script setup>
     import DaysWeather from "./DaysWeather"
-    const name = 'myWeather';
-    const components = { DaysWeather };
+    import { inject, computed, ref, onMounted } from 'vue';
+
+    const weatherData = inject("weatherData");
+    const cidade = inject("cidade")
+
+    //calculo do dia da semana
+    const dayOfWeek = computed(() => {
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const dateString = weatherData.value.daily.time[0];
+        const date = new Date(dateString);
+        const dayIndex = date.getDay();
+        return days[dayIndex];
+    });
+
+    //relógio dentro da app
+    const currentTime = ref('');
+
+    const updateTime = () => {
+        const now = new Date();
+        currentTime.value = now.toLocaleTimeString();
+    };
+
+    //ativa o update quando o componente é montado
+    onMounted(updateTime);
+
+    //ativa periodicamente o update
+    setInterval(updateTime, 1000);
 
 </script>
 

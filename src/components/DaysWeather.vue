@@ -28,7 +28,7 @@
   
   <script setup>
   //inject dos dados no componente
-  import { inject } from 'vue';
+    import { inject } from 'vue';
 
     const weatherData = inject('weatherData');
   </script>
