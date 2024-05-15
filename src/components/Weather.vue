@@ -29,18 +29,6 @@
                             <th>Sea Level</th>
                             <td>100</td>
                         </tr>
-                        <tr v-if="LoggedIn">
-                            <th>Wind Speed</th>
-                            <td>100</td>
-                        </tr>
-                        <tr v-if="LoggedIn">
-                            <th>Surface Pressure</th>
-                            <td>100</td>
-                        </tr>
-                        <tr v-if="LoggedIn">
-                            <th>UV Index</th>
-                            <td>100</td>
-                        </tr>
                     </tbody>
                 </table> 
             </div>   
@@ -59,9 +47,6 @@
   
 <script setup>
     import DaysWeather from "./DaysWeather"
-
-
-
     const name = 'myWeather';
     const components = { DaysWeather };
 
@@ -89,6 +74,7 @@
         background-blend-mode: overlay;
         background-color: rgba(0, 0, 0, 0.5) !important;
         background-repeat: no-repeat;
+        margin-bottom: 0 !important;
     }
     .temp{
         position: absolute;

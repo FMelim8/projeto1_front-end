@@ -19,9 +19,9 @@
                     <RouterLink class="navbar-item" to="/" >
                         Home
                     </RouterLink>
-                    <a class="navbar-item">
-                        
-                    </a>
+                    <RouterLink class="navbar-item" to="/weather" >
+                        Weather
+                    </RouterLink>
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">
                         More
@@ -64,8 +64,6 @@
     import { onMounted } from 'vue';
     
     const authStore = useAuthStore()
-
-    const isUserLoggedIn = Object.keys(authStore.user).length > 0;
 
     const onLogout = () => {
         authStore.logoutUser();

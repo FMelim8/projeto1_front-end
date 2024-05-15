@@ -1,22 +1,6 @@
 <template>  
     <div class="days-tab text-center">
-        <div class="loading">Loading...</div>
         <ul class="p-0">
-            <li class="li_active">
-                <div class="py-3">icons</div>
-                <div class="py-3">days</div>
-                <div class="py-3">12oc</div>
-            </li>
-            <li class="li_active">
-                <div class="py-3">icons</div>
-                <div class="py-3">days</div>
-                <div class="py-3">12oc</div>
-            </li>
-            <li class="li_active">
-                <div class="py-3">icons</div>
-                <div class="py-3">days</div>
-                <div class="py-3">12oc</div>
-            </li>
             <li class="li_active">
                 <div class="py-3">icons</div>
                 <div class="py-3">days</div>
@@ -39,11 +23,14 @@
             </li>
         </ul>
     </div>
+
   </template>
   
-  <script >
-  
+  <script setup>
+  //inject dos dados no componente
+  import { inject } from 'vue';
 
+    const weatherData = inject('weatherData');
   </script>
   
   <style>
