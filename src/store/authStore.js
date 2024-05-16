@@ -2,9 +2,11 @@ import { defineStore } from "pinia";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/init.js";
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 export const useAuthStore =  defineStore("authStore", () => {
 
+    const router = useRouter();
     const user = ref({});
 
     const init = () => {
@@ -30,10 +32,18 @@ export const useAuthStore =  defineStore("authStore", () => {
                 // Signed up 
                 const user = userCredential.user;
                 console.log(user)
+                router.push('/');
                 // ... 
             })
             .catch((error) => {
-               console.log(error.message)
+                if (error.message == "Firebase: Password should be at least 6 characters (auth/weak-password)."){
+                    alert("Password should be at least 6 characters");
+                }
+                else if (error.message == "Firebase: Error (auth/email-already-in-use)."){
+                    alert("Email already exists");
+                }
+                console.log(error.message);
+                
             });
     };
 
@@ -43,9 +53,13 @@ export const useAuthStore =  defineStore("authStore", () => {
                 // Signed in 
                 const user = userCredential.user;
                 console.log(user)
+                router.push('/');
                 // ...
             })
             .catch((error) => {
+                if (error.message == "Firebase: Error (auth/invalid-credential)."){
+                    alert("Incorrect e-mail or password");
+                }
                 console.log(error.message)
             });
     }

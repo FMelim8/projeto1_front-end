@@ -2,24 +2,24 @@
     <div class="days-tab text-center">
         <ul class="p-0">
             <li class="li_active">
-                <div class="py-3">icons</div>
-                <div class="py-3">days</div>
-                <div class="py-3">12oc</div>
+                <div class="py-3"><i :class="weatherCodeToIcon(weatherData.daily.weather_code[1])"></i></div>
+                <div class="py-3">{{ weatherData.daily.time[1] }}</div>
+                <div class="py-3">{{ ((weatherData.daily.temperature_2m_max[1] + weatherData.daily.temperature_2m_min[1] )/2).toFixed(1) }}&deg;C</div>
             </li>
             <li class="li_active">
-                <div class="py-3">icons</div>
-                <div class="py-3">days</div>
-                <div class="py-3">12oc</div>
+                <div class="py-3"><i :class="weatherCodeToIcon(weatherData.daily.weather_code[2])"></i></div>
+                <div class="py-3">{{ weatherData.daily.time[2] }}</div>
+                <div class="py-3">{{ ((weatherData.daily.temperature_2m_max[2] + weatherData.daily.temperature_2m_min[2] )/2).toFixed(1) }}&deg;C</div>
             </li>
             <li class="li_active">
-                <div class="py-3">icons</div>
-                <div class="py-3">days</div>
-                <div class="py-3">12oc</div>
+                <div class="py-3"><i :class="weatherCodeToIcon(weatherData.daily.weather_code[3])"></i></div>
+                <div class="py-3">{{ weatherData.daily.time[3] }}</div>
+                <div class="py-3">{{ ((weatherData.daily.temperature_2m_max[3] + weatherData.daily.temperature_2m_min[3] )/2).toFixed(1) }}&deg;C</div>
             </li>
             <li class="li_active">
-                <div class="py-3">icons</div>
-                <div class="py-3">days</div>
-                <div class="py-3">12oc</div>
+                <div class="py-3"><i :class="weatherCodeToIcon(weatherData.daily.weather_code[4])"></i></div>
+                <div class="py-3">{{ weatherData.daily.time[4] }}</div>
+                <div class="py-3">{{ ((weatherData.daily.temperature_2m_max[4] + weatherData.daily.temperature_2m_min[4] )/2).toFixed(1) }}&deg;C</div>
             </li>
         </ul>
     </div>
@@ -29,7 +29,7 @@
   <script setup>
   //inject dos dados no componente
     import { inject } from 'vue';
-
+    const weatherCodeToIcon = inject("weatherCodeToIcon");
     const weatherData = inject('weatherData');
   </script>
   

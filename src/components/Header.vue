@@ -44,6 +44,10 @@
                     </div>
                 </div>
                 <div class="navbar-end">
+                    <div class="navbar-item" v-if="authStore.user.uid">
+                        <!-- mostra o nome antes do @ do email da pessoa -->
+                        Bem vindo, {{ (authStore.user.email.split("@")[0]) }}
+                    </div>
                     <div class="navbar-item">
                         <div class="buttons">
                         <RouterLink class="button is-primary" to="/auth" v-if="!authStore.user.uid">
@@ -55,7 +59,7 @@
             </div>
         </div>
     </nav>
-    {{ authStore }}
+    <!-- {{ authStore }} -->
 </template>
 
 <script setup>

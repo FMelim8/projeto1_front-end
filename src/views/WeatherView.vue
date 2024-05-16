@@ -2,13 +2,13 @@
   <router-link></router-link>
   <div class="home">
     <div class="header container h-50 p-5">
-      <h1 class="mb-5">Weather App</h1>
+      <h1 class="mb-5">Select your city</h1>
       <div class="d-flex justify-content-center h-100">
-        <div class="searchbar w-50 mx-2 d-flex search1 flex-row-reverse">
-          <div class="field has-addons">
+        <div class="searchbar w-50 mx-2 d-flex search1 flex-row-reverse w-70">
+          <div class="field has-addons searchbar w-100">
             <div class="control is-expanded">
-              <div class="select">
-                <select class="is-fullwidth" v-model="country">
+              <div class="select w-100">
+                <select class="is-fullwidth w-100" v-model="country">
                   <option value="Madeira">Madeira</option>
                   <option value="Porto Santo">Porto Santo</option>
                   <option value="Lisboa">Lisboa</option>
@@ -54,28 +54,29 @@
       switch (countrySelected) {
         //mudar os outros urls
         case "Madeira":
-          url = 'https://api.open-meteo.com/v1/forecast?latitude=32.6667&longitude=-16.75&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability&daily=temperature_2m_max,temperature_2m_min'
+          //{{this.latitude}}
+          url = 'https://api.open-meteo.com/v1/forecast?latitude=32.6667&longitude=-16.75&current=temperature_2m,is_day,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
           break;
         case "Porto Santo":
-          url = 'https://api.open-meteo.com/v1/forecast?latitude=33.0705&longitude=-16.3451&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability&daily=temperature_2m_max,temperature_2m_min'
+          url = 'https://api.open-meteo.com/v1/forecast?latitude=33.0705&longitude=-16.3451&current=temperature_2m,is_day,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
           break;
         case "Lisboa":
-          url = 'https://api.open-meteo.com/v1/forecast?latitude=38.7167&longitude=-9.1333&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability'
+          url = 'https://api.open-meteo.com/v1/forecast?latitude=38.7167&longitude=-9.1333&current=temperature_2m,is_day,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
           break;
         case "Porto":
-          url = 'https://api.open-meteo.com/v1/forecast?latitude=41.1496&longitude=-8.611&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability'
+          url = 'https://api.open-meteo.com/v1/forecast?latitude=41.1496&longitude=-8.611&current=temperature_2m,is_day,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
           break;
         case "Braga":
-          url = 'https://api.open-meteo.com/v1/forecast?latitude=41.5503&longitude=-8.42&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability'
+          url = 'https://api.open-meteo.com/v1/forecast?latitude=41.5503&longitude=-8.42&current=temperature_2m,is_day,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
           break;
         case "Faro":
-          url = 'https://api.open-meteo.com/v1/forecast?latitude=37.0187&longitude=-7.9272&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability'
+          url = 'https://api.open-meteo.com/v1/forecast?latitude=37.0187&longitude=-7.9272&current=temperature_2m,is_day,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
           break;
         case "Aveiro":
-          url = 'https://api.open-meteo.com/v1/forecast?latitude=40.6443&longitude=-8.6455&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability'
+          url = 'https://api.open-meteo.com/v1/forecast?latitude=40.6443&longitude=-8.6455&current=temperature_2m,is_day,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
           break;
         case "Coimbra":
-          url = 'https://api.open-meteo.com/v1/forecast?latitude=40.2056&longitude=-8.4195&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability'
+          url = 'https://api.open-meteo.com/v1/forecast?latitude=40.2056&longitude=-8.4195&current=temperature_2m,is_day,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
           break;
       }
       const response = await axios.get(url);
@@ -103,6 +104,7 @@
 </script>
 
 <style>
+
 .f1{
   flex: 2;
 }
