@@ -14,27 +14,41 @@
                     </div>
                 </div>
             </div>
-            <div class="card card-2 w-100">
-            <div class="container d-flex justify-content-center">
-                <table class="m-4">
-                    <tbody>
-                        <tr>
-                            <th>Max Temperature</th>
-                            <td>{{ weatherData.daily.temperature_2m_max[0] }} ºC</td>
-                        </tr>
-                        <tr>
-                            <th>Min Temperature</th>
-                            <td>{{ weatherData.daily.temperature_2m_min[0] }} ºC</td>    
-                        </tr>
-                        <tr>
-                            <th>Precipitation Probability</th>
-                            <td>{{ weatherData.daily.precipitation_probability_max[0] }}%</td>
-                        </tr>
-                    </tbody>
-                </table> 
-            </div> 
-            <DaysWeather></DaysWeather>
-            <div id="div_Form" class="d-flex m-3 justify-content-center">
+            <div class="card card-2 w-100" >
+            <div v-if="authStore.user.uid">
+                <div class="container d-flex justify-content-center">
+                    <table class="m-4">
+                        <tbody>
+                            <tr>
+                                <th>Max Temperature</th>
+                                <td>{{ weatherData.daily.temperature_2m_max[0] }} ºC</td>
+                            </tr>
+                            <tr>
+                                <th>Min Temperature</th>
+                                <td>{{ weatherData.daily.temperature_2m_min[0] }} ºC</td>    
+                            </tr>
+                            <tr>
+                                <th>Precipitation Probability</th>
+                                <td>{{ weatherData.daily.precipitation_probability_max[0] }}%</td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                </div> 
+                <DaysWeather></DaysWeather>
+                <div class="m-3"></div>
+            </div>
+            <div v-if="!authStore.user.uid">
+                <p>
+                    <div class="display-1 has-text-danger">For more Information</div>
+                </p>
+                <p>
+                    <div class="display-5 has-text-danger">Please log-in or register</div>
+                </p>
+                <p>
+                    <RouterLink class="display-5 has-text-danger is-underlined is-italic" to="/auth" >
+                        Here
+                    </RouterLink>
+                </p>
             </div>
         </div>
             
@@ -47,7 +61,9 @@
     import DaysWeather from "./DaysWeather"
     import { inject, computed, ref, onMounted, provide, watch } from 'vue';
     import '@fortawesome/fontawesome-free/css/all.css';
+    import { useAuthStore } from '@/store/authStore';
 
+    const authStore = useAuthStore()
 
     const weatherData = inject("weatherData");
     const cidade = inject("cidade")

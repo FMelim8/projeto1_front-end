@@ -1,6 +1,6 @@
 <template>  
-    <div class="days-tab text-center">
-        <ul class="p-0">
+    <div class="days-tab text-center" >
+        <ul class="p-0" >
             <li class="li_active">
                 <div class="py-3"><i :class="weatherCodeToIcon(weatherData.daily.weather_code[1])"></i></div>
                 <div class="py-3">{{ weatherData.daily.time[1] }}</div>

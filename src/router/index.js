@@ -45,13 +45,6 @@ const routes = [
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/WeatherView.vue')
     }
-  },
-  {
-    path: '/api',
-    name: 'api',
-    component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/APIView.vue')
-    }
   }
 ]
 
