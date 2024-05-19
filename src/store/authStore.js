@@ -11,8 +11,6 @@ export const useAuthStore =  defineStore("authStore", () => {
 
     const init = () => {
         onAuthStateChanged(auth, (userDetails) => {
-            console.log("Auth state changed")
-            console.log(userDetails)
             if (userDetails) {
                 const uid = userDetails.uid;
                 user.value = { email: userDetails.email, uid }
@@ -31,7 +29,6 @@ export const useAuthStore =  defineStore("authStore", () => {
             .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
-                console.log(user)
                 router.push('/');
                 // ... 
             })
@@ -42,8 +39,6 @@ export const useAuthStore =  defineStore("authStore", () => {
                 else if (error.message == "Firebase: Error (auth/email-already-in-use)."){
                     alert("Email already exists");
                 }
-                console.log(error.message);
-                
             });
     };
 
@@ -52,7 +47,6 @@ export const useAuthStore =  defineStore("authStore", () => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                console.log(user)
                 router.push('/');
                 // ...
             })
@@ -60,14 +54,12 @@ export const useAuthStore =  defineStore("authStore", () => {
                 if (error.message == "Firebase: Error (auth/invalid-credential)."){
                     alert("Incorrect e-mail or password");
                 }
-                console.log(error.message)
             });
     }
 
     const logoutUser = () => {
         signOut(auth)
         .then(() => {
-            console.log("Logged out")
             // Sign-out successful.
           }).catch((error) => {
             // An error happened.

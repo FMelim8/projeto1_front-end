@@ -40,9 +40,6 @@
         border-radius: 20px;
         margin: auto;
     }
-    .loading{
-        color: white;
-    }
     ul{
         margin: 0;
     }
@@ -62,11 +59,11 @@
         height: 35px;
     }
     .li_active{
-        background: #253d5c;
+        background: var(--backg-color);
         color: #222831;
         border-radius: 10px;
         margin: 0.5rem;
-        color: white;
+        color: var(--text-color2) !important;
         font-weight: 600;
     }
     .li_active:hover{

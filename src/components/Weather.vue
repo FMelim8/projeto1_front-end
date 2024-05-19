@@ -226,7 +226,7 @@
         z-index: 1;
     }
     .card-2{
-        background-color: #363b50 !important;
+        background-color: var(--tertiary-color) !important;
         border-radius: 25px;
     }
     .card-details{
@@ -254,7 +254,7 @@
     }
     th, td{
         font-size: 18px;
-        color: white;
+        color: var(--text-color2) !important;
     }
     td{
         text-align: right;

@@ -8,6 +8,12 @@
                     <RouterLink class="navbar-item" to="/weather" >
                         Weather
                     </RouterLink>
+                    <button @click="toggleTheme" class="navbar-item" v-if="themeStore.theme == 'dark'">
+                        Theme <i class="fa-solid fa-lightbulb fa-lg"></i>
+                    </button>
+                    <button @click="toggleTheme" class="navbar-item" v-if="themeStore.theme == 'light'">
+                        Theme <i class="fa-solid fa-moon fa-lg"></i>
+                    </button>
                 </div>
                 <div class="navbar-end mr-5">
                     <div class="navbar-item" v-if="authStore.user.uid">
@@ -25,13 +31,15 @@
             </div>
         </div>
     </nav>
-    <!-- {{ authStore }} -->
 </template>
 
 <script setup>
     import { ref } from "vue"
     import { useAuthStore } from '@/store/authStore';
     import { onMounted } from 'vue';
+    import { useThemeStore } from '../store/themeStore';
+
+    const themeStore = useThemeStore();
     
     const authStore = useAuthStore()
 
@@ -39,17 +47,52 @@
         authStore.logoutUser();
     }
 
+    var colors = ""
+
     onMounted(() => {
         authStore.init()
+        colors = assignColors()
     })
+
+    const toggleTheme = () => {
+        themeStore.setTheme(themeStore.theme === 'light' ? 'dark' : 'light');
+        colors = assignColors();
+    };
+
+
+    const assignColors = () => {
+        const colors = {
+            background: themeStore.theme === "light" ? "#ffffff" : "#14161A",
+            primary: themeStore.theme === "light" ? "#484b6a" : "#181B20",
+            secondary: themeStore.theme === "light" ? "#9394a5" : "#6c757d",
+            tertiary: themeStore.theme === "light" ? "#d2d3db" : "#363b50",
+            text: themeStore.theme === "light" ? "#181B20" : "#6c757d",
+            text2: themeStore.theme === "light" ? "#000000" : "#ffffff"
+        };
+        document.documentElement.style.setProperty("--backg-color", colors.background);
+        document.documentElement.style.setProperty("--primary-color", colors.primary);
+        document.documentElement.style.setProperty("--secondary-color", colors.secondary);
+        document.documentElement.style.setProperty("--tertiary-color", colors.tertiary);
+        document.documentElement.style.setProperty("--text-color", colors.text);
+        document.documentElement.style.setProperty("--text-color2", colors.text2);
+        return colors;
+    };
 
 </script>
 
 <style>
-    .navbar{
-        background-color: #363b50
+    i{
+        margin-left: 5px;
     }
     nav{
+        background-color: var(--primary-color) !important;
+        padding-bottom: 0 !important;
+    }
+    .navbar-item {
+    color: var(--text-color) !important;
+    }
+    nav{
+        /* color: #acb7c2; */
         padding-left: 0 !important;
         padding-right: 0 !important;
         padding-top: 0 !important;

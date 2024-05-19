@@ -6,5 +6,10 @@ import { createPinia } from 'pinia'
 import "bootstrap/dist/css/bootstrap.css"
 import "bootstrap-vue/dist/bootstrap-vue.css"
 import 'bulma/css/bulma.min.css'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
-createApp(App).use(store).use(createPinia()).use(router).mount('#app')
+const pinia = createPinia();
+
+pinia.use(piniaPluginPersistedstate);
+
+createApp(App).use(store).use(router).use(pinia).mount('#app');

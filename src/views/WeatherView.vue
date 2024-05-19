@@ -38,14 +38,18 @@
 
 <script setup>
   import Weather from "../components/Weather.vue";
-  import { ref, provide } from 'vue';
+  import { ref, provide, onMounted } from 'vue';
   import axios from 'axios';
 
   const weatherData = ref();
   const country = ref("");
   const cidade = ref("");
-  
 
+  onMounted(()=> {
+    //iniciar a página com a cidade da madeira já escolhida
+    country.value = "Madeira";
+    chooseCountry();
+  })
 
   const fetchWeatherData = async () => {
     try {
@@ -92,7 +96,6 @@
     fetchWeatherData();
     updateCity();
   };
-  console.log('Weather Data:', weatherData.value);
 
   // faz a cont weatherData poder ser usada nos componentes filho
   provide("weatherData", weatherData);
@@ -104,7 +107,15 @@
 </script>
 
 <style>
-
+.header{
+  background-color: var(--secondary-color) !important;
+}
+.mb-5{
+  color: var(--text-color2);
+}
+.home{
+  background-color: var(--backg-color) !important;
+}
 .f1{
   flex: 2;
 }
@@ -117,8 +128,7 @@
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: white;
-  margin-top: 5vh; 
-  /* ^por enquanto. depois vou adicionar os logins e isso */
+
 }
 .btn-search{
   background: rgb(2,0,36);

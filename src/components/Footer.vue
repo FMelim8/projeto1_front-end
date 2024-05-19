@@ -12,4 +12,16 @@
 </template>
 <script setup>
 
+
 </script>
+
+<style>
+.footer{
+  background-color: var(--primary-color) !important;
+  height: 300px;
+  color: var(--text-color) !important;
+}
+strong{
+  color: var(--text-color2) !important;
+}
+</style>
